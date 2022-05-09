@@ -34,10 +34,11 @@ fun Greeting(name: String) {
     Text(text = "Hello $name!")
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, name="Android Greeting")
 @Composable
 fun DefaultPreview() {
     MyMoviesHPTheme {
+        Greeting("Heyner")
         Greeting("Android")
     }
 }
