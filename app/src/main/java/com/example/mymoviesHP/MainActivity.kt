@@ -3,12 +3,11 @@ package com.example.mymoviesHP
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.*
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -25,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.example.mymoviesHP.ui.theme.MyMoviesHPTheme
 
+@ExperimentalFoundationApi
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,15 +42,16 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@ExperimentalFoundationApi
 @Preview
 @Composable
 fun MediaList(){
-    LazyRow(
-        contentPadding = PaddingValues(4.dp),
-        horizontalArrangement = Arrangement.spacedBy(5.dp)
+    LazyVerticalGrid(
+        contentPadding = PaddingValues(2.dp),
+        cells = GridCells.Adaptive(150.dp)
     ){
         items(getMedia()){ item ->
-            MediaListItem(item)
+            MediaListItem(item, Modifier.padding(2.dp))
         }
     }
 }
@@ -58,9 +59,9 @@ fun MediaList(){
 
 //@Preview(showBackground = true)
 @Composable
-fun MediaListItem(item: MediaItem) {
+fun MediaListItem(item: MediaItem, modifier: Modifier = Modifier) {
     Column(
-        modifier = Modifier.width(200.dp)
+        modifier = modifier
     ) {
         Box(
             modifier = Modifier
