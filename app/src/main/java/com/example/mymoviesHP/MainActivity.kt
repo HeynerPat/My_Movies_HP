@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-//@Preview(showBackground = true)
+@Preview(showBackground = true)
 @Composable
 fun MediaItem(){
     Column() {
@@ -46,7 +46,13 @@ fun MediaItem(){
         ) {
 
         }
-        Text("Title 1")
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier.fillMaxWidth().background(MaterialTheme.colors.secondary).padding(16.dp)
+        ){
+            Text("Title 1")
+        }
+
     }
 }
 
@@ -55,7 +61,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(text = "Hello $name!", modifier = modifier)
 }
 
-@Preview(showBackground = true, widthDp = 200, heightDp = 100)
+//@Preview(showBackground = true, widthDp = 200, heightDp = 100)
 @Composable
 fun ButtonText(){
     Box(modifier = Modifier.fillMaxSize(),
