@@ -1,9 +1,11 @@
 package com.example.mymoviesHP
-
+// 33:36min
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -13,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.mymoviesHP.ui.theme.MyMoviesHPTheme
 
 class MainActivity : ComponentActivity() {
@@ -25,37 +28,25 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    ButtonText()
                 }
             }
         }
     }
 }
-
-@Preview(
-    showBackground = true,
-    name = "Android Greeting",
-    widthDp = 400,
-    heightDp = 200
-)
+//@Preview(showBackground = true)
 @Composable
-fun DefaultPreview() {
-    MyMoviesHPTheme {
-        Row(
-            modifier = Modifier.fillMaxSize(),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = Alignment.CenterVertically
+fun MediaItem(){
+    Column() {
+        Box(
+            modifier = Modifier
+                .height(200.dp)
+                .fillMaxWidth()
+                .background(color = Color.Red)
         ) {
-            Greeting(
-                "Heyner",
-                modifier = Modifier.background(Color.LightGray)
-            )
-            Greeting(
-                "Android",
-                modifier = Modifier.background(Color.Yellow)
-            )
-        }
 
+        }
+        Text("Title 1")
     }
 }
 
@@ -64,3 +55,38 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(text = "Hello $name!", modifier = modifier)
 }
 
+@Preview(showBackground = true, widthDp = 200, heightDp = 100)
+@Composable
+fun ButtonText(){
+    Box(modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+        ){
+        Text(
+            text = "Hello Word",
+            modifier = Modifier
+                .clickable {
+                    /*TODO*/
+                }
+                .background(Color.Cyan)
+                .border(2.dp, Color.Blue)
+                .padding(horizontal = 16.dp, vertical = 8.dp)
+        )
+    }
+}
+
+//@Preview(showBackground = true, name = "Android Greeting")
+@Composable
+fun DefaultPreview(){
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(200.dp),
+        horizontalArrangement = Arrangement.SpaceAround,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Greeting(
+            name = "Android",
+            modifier = Modifier.background(Color.LightGray)
+        )
+    }
+}
