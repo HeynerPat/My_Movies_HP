@@ -13,9 +13,20 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.em
+import androidx.compose.ui.unit.sp
 import com.example.mymoviesHP.ui.theme.MyMoviesHPTheme
 
 class MainActivity : ComponentActivity() {
@@ -48,9 +59,15 @@ fun MediaItem(){
         }
         Box(
             contentAlignment = Alignment.Center,
-            modifier = Modifier.fillMaxWidth().background(MaterialTheme.colors.secondary).padding(16.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colors.secondary)
+                .padding(16.dp)
         ){
-            Text("Title 1")
+            Text(
+                text = "Title 1",
+                style = MaterialTheme.typography.h6,
+            )
         }
 
     }
@@ -68,17 +85,43 @@ fun ButtonText(){
         contentAlignment = Alignment.Center
         ){
         Text(
-            text = "Hello Word",
-            modifier = Modifier
+            text = "Hello World",
+
+            //onTextLayout =
+            //lineHeight = 2.em
+        )
+    }
+}
+/* CONFIGURACIONES AL TEXTO
+* color = Color.Red,
+            fontSize = 25.sp,
+            fontStyle = FontStyle.Italic,
+            fontWeight = FontWeight.Bold,
+            fontFamily = FontFamily.Monospace,
+            letterSpacing = 5.sp,
+            textDecoration = TextDecoration.LineThrough,
+            textAlign = TextAlign.Center,
+            maxLines = 1,
+            softWrap = false,
+            overflow = TextOverflow.Ellipsis,
+            style = MaterialTheme.typography.h4.copy(
+                shadow = Shadow(
+                    offset = Offset(5f, 5f),
+                    blurRadius = 5f,
+                    color = Color.Black.copy(alpha = 0.5f)
+                )
+            )
+* */
+
+/*MODIFIER DE BUTTONTEXT
+* modifier = Modifier
                 .clickable {
                     /*TODO*/
                 }
                 .background(Color.Cyan)
                 .border(2.dp, Color.Blue)
                 .padding(horizontal = 16.dp, vertical = 8.dp)
-        )
-    }
-}
+* */
 
 //@Preview(showBackground = true, name = "Android Greeting")
 @Composable
