@@ -10,7 +10,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.PlayCircleOutline
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.*
 import androidx.compose.runtime.getValue
@@ -22,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -39,57 +43,54 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    var (value, onValueChange) = rememberSaveable{ mutableStateOf("")}
-                    StateSample(
-                        value = value,
-                        onValueChange = onValueChange
-                    )
+                    Scaffold(
+                        topBar = {
+                            TopAppBar(
+                                title = {Text(text= stringResource(id=R.string.app_name) + " Heyner Pat")},
+                                actions = {
+                                    IconButton(onClick = { /*TODO*/ }) {
+                                        Icon(
+                                            imageVector = Icons.Default.Search,
+                                            contentDescription = null
+                                        )
+                                    }
+                                    IconButton(onClick = { /*TODO*/ }) {
+                                        Icon(
+                                            imageVector = Icons.Default.Share,
+                                            contentDescription = null
+                                        )
+                                    }
+                                }
+                                /*navigationIcon = {
+                                    IconButton(onClick = { /*TODO*/ }) {
+                                        Icon(
+                                            imageVector = Icons.Default.Menu,
+                                            contentDescription = null
+                                        )
+                                    }
+                                }*/
+                            )
+                        }
+                    ){ padding ->
+                        MediaList(modifier = Modifier.padding(padding))
+                    }
                 }
             }
         }
     }
 }
 
-//@Preview(showBackground = true, widthDp = 400, heightDp = 400)
-@Composable
-fun StateSample(value:String, onValueChange:(String)->Unit){
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(64.dp),
-        verticalArrangement = Arrangement.Center
-    ){
-        TextField(
-            value = value,
-            onValueChange = {onValueChange(it)},
-            modifier = Modifier.fillMaxWidth()
-        )
-        Text(
-            text = value,
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.Yellow)
-                .padding(8.dp)
-        )
-        Button(
-            onClick = { onValueChange("") },
-            modifier = Modifier.fillMaxWidth(),
-            enabled = value.isNotEmpty()
-        ) {
-            Text(text = "Clear")
-        }
-    }
-}
 
 
 @ExperimentalFoundationApi
 //@Preview
 @Composable
-fun MediaList(){
+fun MediaList(modifier: Modifier = Modifier){
     LazyVerticalGrid(
         contentPadding = PaddingValues(2.dp),
-        cells = GridCells.Adaptive(150.dp)
+        cells = GridCells.Adaptive(150.dp),
+        modifier = modifier
     ){
         items(getMedia()){ item ->
             MediaListItem(item, Modifier.padding(2.dp))
@@ -209,3 +210,41 @@ fun DefaultPreview(){
         )
     }
 }
+
+/*
+var (value, onValueChange) = rememberSaveable{ mutableStateOf("")}
+StateSample(
+value = value,
+onValueChange = onValueChange
+)
+//@Preview(showBackground = true, widthDp = 400, heightDp = 400)
+@Composable
+fun StateSample(value:String, onValueChange:(String)->Unit){
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(64.dp),
+        verticalArrangement = Arrangement.Center
+    ){
+        TextField(
+            value = value,
+            onValueChange = {onValueChange(it)},
+            modifier = Modifier.fillMaxWidth()
+        )
+        Text(
+            text = value,
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.Yellow)
+                .padding(8.dp)
+        )
+        Button(
+            onClick = { onValueChange("") },
+            modifier = Modifier.fillMaxWidth(),
+            enabled = value.isNotEmpty()
+        ) {
+            Text(text = "Clear")
+        }
+    }
+}*/
