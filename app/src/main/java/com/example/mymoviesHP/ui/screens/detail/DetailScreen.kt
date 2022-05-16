@@ -1,10 +1,18 @@
 package com.example.mymoviesHP.ui.screens.detail
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
+import com.example.mymoviesHP.R
 import com.example.mymoviesHP.model.getMedia
 import com.example.mymoviesHP.ui.screens.common.Thumb
 

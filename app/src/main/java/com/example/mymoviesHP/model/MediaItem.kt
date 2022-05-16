@@ -13,7 +13,7 @@ fun getMedia() = (1..10).map{
     MediaItem(
         id = it,
         title = "Title $it",
-        thumb = "https://images4.alphacoders.com/909/909005.jpg",
+        thumb = "https://picsum.photos/500/300/?image=$it",
         type = if(it % 3 == 0) MediaItem.Type.VIDEO else MediaItem.Type.PHOTO
     )
 }
