@@ -3,6 +3,7 @@ package com.example.mymoviesHP
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
@@ -19,23 +20,27 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import coil.compose.rememberImagePainter
-import com.example.mymoviesHP.R
 import com.example.mymoviesHP.model.MediaItem
 import com.example.mymoviesHP.model.getMedia
 
 @ExperimentalFoundationApi
 //@Preview
 @Composable
-fun MediaList(modifier: Modifier = Modifier){
+fun MediaList(navController: NavHostController, modifier: Modifier = Modifier){
     LazyVerticalGrid(
         contentPadding = PaddingValues(dimensionResource(R.dimen.padding_xsmall)),
         cells = GridCells.Adaptive(dimensionResource(R.dimen.cell_min_width)),
         modifier = modifier
     ){
+        //COdigo dif
         items(getMedia()){ item ->
-            MediaListItem(item, Modifier.padding(dimensionResource(R.dimen.padding_xsmall)))
+            MediaListItem(
+                item,
+                navController,
+                Modifier.padding(dimensionResource(R.dimen.padding_xsmall)),
+            )
         }
     }
 }
@@ -43,9 +48,15 @@ fun MediaList(modifier: Modifier = Modifier){
 
 //@Preview(showBackground = true)
 @Composable
-fun MediaListItem(item: MediaItem, modifier: Modifier = Modifier) {
+fun MediaListItem(
+    item: MediaItem,
+    navController: NavHostController,
+    modifier: Modifier = Modifier
+) {
     Column(
-        modifier = modifier
+        modifier = modifier.clickable{
+            navController.navigate("detail/${item.id}")
+        }
     ) {
         Box(
             modifier = Modifier
@@ -91,4 +102,8 @@ fun MediaListItem(item: MediaItem, modifier: Modifier = Modifier) {
 @Composable
 fun MediaListPreview(){
     MediaList()
+}
+
+fun MediaList() {
+    TODO("Not yet implemented")
 }

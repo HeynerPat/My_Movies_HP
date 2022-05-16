@@ -29,7 +29,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import coil.compose.rememberImagePainter
+import com.example.mymoviesHP.ui.screens.detail.DetailScreen
 import com.example.mymoviesHP.ui.theme.MyMoviesHPTheme
 
 @ExperimentalFoundationApi
@@ -37,9 +43,23 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyMoviesApp {
-                MainScreen()
+            val navController = rememberNavController()
+            NavHost(navController = navController, startDestination = "main"){
+                composable("main"){
+                    MyMoviesApp {
+                        MainScreen(navController)
+                    }
                 }
+                composable(route ="detail/{mediaId}", arguments =listOf(navArgument("mediaId"){type = NavType.IntType})
+                ){backStackEntry ->
+                    val id = backStackEntry.arguments?.getInt("mediaId")
+                    requireNotNull(id)
+                    DetailScreen(id)
+                }
+            }
+            /*MyMoviesApp {
+                MainScreen()
+                }*/
             }
         }
 

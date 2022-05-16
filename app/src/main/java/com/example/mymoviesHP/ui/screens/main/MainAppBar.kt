@@ -14,7 +14,7 @@ import androidx.compose.ui.res.stringResource
 @Composable
 fun MainAppBar(){
         TopAppBar(
-            title = { Text(text= stringResource(id=R.string.app_name) + " - Heyner Pat") },
+            title = { Text(text= stringResource(id=R.string.app_name) + " - Heyner") },
             actions = {
                 AppBarAction(
                     imageVector = Icons.Default.Search,
