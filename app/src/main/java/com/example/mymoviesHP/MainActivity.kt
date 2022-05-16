@@ -37,112 +37,20 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyMoviesHPTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Scaffold(
-                        topBar = {
-                            TopAppBar(
-                                title = {Text(text= stringResource(id=R.string.app_name) + " Heyner Pat")},
-                                actions = {
-                                    IconButton(onClick = { /*TODO*/ }) {
-                                        Icon(
-                                            imageVector = Icons.Default.Search,
-                                            contentDescription = null
-                                        )
-                                    }
-                                    IconButton(onClick = { /*TODO*/ }) {
-                                        Icon(
-                                            imageVector = Icons.Default.Share,
-                                            contentDescription = null
-                                        )
-                                    }
-                                }
-                                /*navigationIcon = {
-                                    IconButton(onClick = { /*TODO*/ }) {
-                                        Icon(
-                                            imageVector = Icons.Default.Menu,
-                                            contentDescription = null
-                                        )
-                                    }
-                                }*/
-                            )
-                        }
-                    ){ padding ->
-                        MediaList(modifier = Modifier.padding(padding))
-                    }
+            MyMoviesApp {
+                MainScreen()
                 }
             }
         }
-    }
+
+
 }
 
 
 
 
-@ExperimentalFoundationApi
-//@Preview
-@Composable
-fun MediaList(modifier: Modifier = Modifier){
-    LazyVerticalGrid(
-        contentPadding = PaddingValues(2.dp),
-        cells = GridCells.Adaptive(150.dp),
-        modifier = modifier
-    ){
-        items(getMedia()){ item ->
-            MediaListItem(item, Modifier.padding(2.dp))
-        }
-    }
-}
 
 
-//@Preview(showBackground = true)
-@Composable
-fun MediaListItem(item: MediaItem, modifier: Modifier = Modifier) {
-    Column(
-        modifier = modifier
-    ) {
-        Box(
-            modifier = Modifier
-                .height(200.dp)
-                .fillMaxWidth(),
-            contentAlignment = Alignment.Center
-        ) {
-            Image(
-                painter = rememberImagePainter(
-                    data = item.thumb,
-                ),
-                contentDescription = null,
-                modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop
-            )
-            if(item.type == MediaItem.Type.VIDEO) {
-                Icon(
-                    imageVector = Icons.Default.PlayCircleOutline,
-                    contentDescription = null,
-                    modifier = Modifier.size(92.dp),
-                    tint = Color.White,
-                )
-            }
-        }
-        Box(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(MaterialTheme.colors.secondary)
-                .padding(16.dp)
-        ){
-            Text(
-                text = item.title,
-                style = MaterialTheme.typography.h6,
-            )
-        }
-
-    }
-}
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {

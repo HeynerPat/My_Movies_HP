@@ -1,4 +1,4 @@
-package com.example.mymoviesHP
+package com.example.mymoviesHP.model
 
 data class MediaItem(
     val id: Int,
